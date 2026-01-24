@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cancy | Projects</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.9s ease-out forwards;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-[#0f0f14] via-[#141422] to-[#1b1b2f] text-white">
+
+<nav
+      class="w-full max-w-6xl mx-auto px-8 py-5 flex justify-between items-center"
+    >
+
+      <ul class="flex space-x-10 text-lg font-semibold text-gray-200">
+        <li>
+          <a
+            href="index.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="skills.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Skills</a
+            >
+          </li>
+          <li>
+            <a
+            href="progress.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Progress</a
+            >
+          </li>
+          <li>
+            <a
+            href="education.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Education</a
+            >
+          </li>
+          <li>
+            <a
+            href="project.html"
+            class="px-5 py-3 rounded-lg bg-white/10 text-purple-400"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a
+            href="contact.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+<section class="max-w-6xl mx-auto px-8 pt-14 pb-12">
+  <h1 class="text-4xl font-bold mb-4 fade-up">
+    Projects <span class="text-purple-400"></span>
+  </h1>
+  <p class="text-gray-400 max-w-2xl fade-up" style="animation-delay:0.2s">
+  
+  </p>
+</section>
+
+
+<section class="max-w-6xl mx-auto px-8 pb-20 space-y-14">
+
+<div class="grid md:grid-cols-2 gap-10 items-center bg-[#1c1c2e] p-8 rounded-xl fade-up hover:-translate-y-2 transition">
+  <div>
+    <h2 class="text-2xl font-semibold text-purple-400 mb-3">
+      Skillify – Student Skill Analyzer
+    </h2>
+    <p class="text-gray-300 mb-4">
+      Skillify is a student skill analysis platform that evaluates performance using structured assessments and analytical models.
+      It processes test data to identify strengths, weaknesses, and learning gaps, helping students understand where they need improvement.
+      The project focuses on data-driven decision making, assessment logic, and meaningful feedback generation.
+    </p>
+
+    <div class="flex flex-wrap gap-2 mb-5 text-sm">
+      <span class="bg-[#161627] px-3 py-1 rounded-full">Python</span>
+      <span class="bg-[#161627] px-3 py-1 rounded-full">Flask</span>
+      <span class="bg-[#161627] px-3 py-1 rounded-full">ML</span>
+    </div>
+
+    <a href="https://github.com/Cancy-988/skillify"
+       target="_blank"
+       class="inline-flex items-center gap-2 text-gray-400 hover:text-purple-400 transition">
+      🧑‍💻 View Code
+    </a>
+  </div>
+
+  <img src="assets/images/Skillify.png"
+       class="rounded-lg shadow-lg object-cover w-full h-64 hover:scale-105 transition" />
+</div>
+
+<div class="grid md:grid-cols-2 gap-10 items-center bg-[#1c1c2e] p-8 rounded-xl fade-up hover:-translate-y-2 transition">
+  <div>
+    <h2 class="text-2xl font-semibold text-purple-400 mb-3">
+      Air Quality Index Analysis
+    </h2>
+    <p class="text-gray-300 mb-4">
+      This project analyzes real-time air quality data collected through public APIs to study pollution trends and patterns.
+      Interactive dashboards were created to visualize AQI levels across locations, enabling better understanding of
+      environmental conditions and data-driven insights.
+    </p>
+
+    <p class="text-gray-400 text-sm mb-4">
+      Power BI • API • Data Visualization
+    </p>
+
+    <a href="https://github.com/Cancy-988/Air-Quality-Index-Dashboard-"
+       target="_blank"
+       class="inline-flex items-center gap-2 text-gray-400 hover:text-purple-400 transition">
+      🧑‍💻 View Code
+    </a>
+  </div>
+
+  <img src="assets/images/Air1.png"
+       class="rounded-lg shadow-lg object-cover w-full h-64 hover:scale-105 transition" />
+</div>
+
+</section>
+
+<section class="max-w-6xl mx-auto px-8 pb-24">
+  <div class="grid md:grid-cols-2 gap-8">
+
+   
+
+    <h2 class="text-3xl font-semibold text-purple-400 mb-6 fade-up">
+    Machine Learning Projects
+    </h2> 
+    <p class="text-gray-400 mb-10 max-w-2xl">
+      
+    </p>
+
+    <div class="bg-[#1c1c2e] p-6 rounded-xl hover:-translate-y-1 transition border border-dashed border-purple-400/40">
+      <h3 class="text-lg font-semibold text-purple-400 mb-2">Diabetes Prediction</h3>
+      <p class="text-gray-300 mb-3">
+        This project involves building and evaluating machine learning models to predict the 
+        likelihood of diabetes using medical and lifestyle-related features.
+        The focus was on data preprocessing, feature selection, model training, and 
+        evaluating prediction accuracy to support early risk identification.
+      </p>
+      <a href="https://github.com/Cancy-988/diabetes-prediction"
+         target="_blank"
+         class="text-gray-400 hover:text-purple-400">🧑‍💻 View Code</a>
+    </div>
+    <div class="bg-[#1c1c2e] p-6 rounded-xl hover:-translate-y-1 transition border border-dashed border-purple-400/40">
+      <h3 class="text-lg font-semibold text-purple-400 mb-2">
+        Student Performance Prediction
+      </h3>
+      <p class="text-gray-300 mb-3">
+        This project analyzes student-related data to predict academic performance and productivity levels.
+        Decision tree and regression-based models were applied to understand how different
+        factors influence student outcomes, supporting data-driven academic insights.
+      </p>
+      <a href="https://github.com/Cancy-988/Student-Productivity-Prediction-System"
+         target="_blank"
+         class="text-gray-400 hover:text-purple-400">🧑‍💻 View Code</a>
+    </div>
+
+      <h2 class="text-3xl font-semibold text-purple-400 mb-6 mt-16 fade-up">
+        Data Analysis & Case Studies
+      </h2>
+      <p class="text-gray-400 mb-10 max-w-2xl">
+        
+      </p>
+
+    <div class="bg-[#1c1c2e] p-6 rounded-xl hover:-translate-y-1 transition border border-dashed border-purple-400/40">
+      <h3 class="text-lg font-semibold text-purple-400 mb-2">Crime Data Analysis</h3>
+      <p class="text-gray-300 mb-3">
+      This project focuses on cleaning and analyzing crime datasets to uncover patterns, trends,
+      and key insights related to criminal activities.
+      The analysis helps in understanding crime distribution and behavioral trends using
+      structured data exploration techniques.
+      </p>
+      <a href="https://github.com/Cancy-988/crime-data-analysis"
+         target="_blank"
+         class="text-gray-400 hover:text-purple-400">🧑‍💻 View Code</a>
+    </div>
+
+    <div class="bg-[#1c1c2e] p-6 rounded-xl hover:-translate-y-1 transition border border-dashed border-purple-400/40">
+      <h3 class="text-lg font-semibold text-purple-400 mb-2">Netflix Data Analysis</h3>
+      <p class="text-gray-300 mb-3">
+      This case study analyzes Netflix content data to explore trends in genres, release patterns, and content distribution.
+      The project emphasizes exploratory data analysis, visualization, and insight generation 
+      to understand entertainment consumption behavior.
+      </p>
+      <span class="text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">
+        Offline Case Study | Data Analysis
+      </span>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
