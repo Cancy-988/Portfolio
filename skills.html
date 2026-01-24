@@ -7,6 +7,24 @@
 
  
     <script src="https://cdn.tailwindcss.com"></script>
+   <style>
+    @keyframes fadeUp {
+        from {
+        opacity: 0;
+        transform: translateY(20px);
+        }
+        to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+
+    .animate-fade-up {
+        animation: fadeUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+</style>
+
   </head>
   
   <body
@@ -58,10 +76,11 @@
 
    
     <section class="max-w-6xl mx-auto px-8 pt-16 pb-10">
-      <h2 class="text-4xl font-bold mb-4">
+      <h2 class="text-4xl font-bold mb-4  animate-fade-up">
         Skills & <span class="text-purple-400">Expertise</span>
       </h2>
-      <p class="text-gray-400 max-w-2xl leading-relaxed">
+      <p class="text-gray-400 max-w-2xl leading-relaxed animate-fade-up"
+      style="animation-delay: 0.2s">
         A balanced combination of data science expertise, software engineering
         fundamentals, and practical tools used to build real-world projects.
       </p>
@@ -72,45 +91,49 @@
       class="max-w-6xl mx-auto px-8 pb-20 grid grid-cols-1 md:grid-cols-2 gap-8"
     >
 
-      <div class="bg-[#1c1c2e] p-8 rounded-xl">
+        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+         style="animation-delay: 0.2s">
         <h3 class="text-xl font-semibold mb-4 text-purple-400">
           Core Data Science & Analytics
         </h3>
         <p class="text-gray-300 leading-relaxed">
-          Python, Pandas, NumPy, Data Cleaning & EDA, Machine Learning
-          , Power BI, Excel
+          Python, Pandas, NumPy, Data Cleaning & EDA, Machine Learning,
+          Power BI, Excel.
         </p>
       </div>
 
 
-      <div class="bg-[#1c1c2e] p-8 rounded-xl">
+        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+        style="animation-delay: 0.35s">
         <h3 class="text-xl font-semibold mb-4 text-purple-400">
           Software Engineering Fundamentals
         </h3>
         <p class="text-gray-300 leading-relaxed">
           Data Structures, Problem Solving, File Handling, Modular Code
-          Writing, Git & GitHub
+          Writing, Git & GitHub.
         </p>
       </div>
 
       
-      <div class="bg-[#1c1c2e] p-8 rounded-xl">
+        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+        style="animation-delay: 0.5s">
         <h3 class="text-xl font-semibold mb-4 text-purple-400">
           Frontend, UI/UX & Presentation
         </h3>
         <p class="text-gray-300 leading-relaxed">
           HTML (Semantic Structure), CSS (Basics), Tailwind CSS, Responsive
-          Design (Basic), UI/UX Principles for clean layouts
+          Design (Basic), UI/UX Principles for clean layouts.
         </p>
       </div>
 
-      <div class="bg-[#1c1c2e] p-8 rounded-xl">
+        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+        style="animation-delay: 0.65s">
         <h3 class="text-xl font-semibold mb-4 text-purple-400">
           Platforms, Tools & Ecosystem
         </h3>
-        <p class="text-gray-300 leading-relaxed">
-          Jupyter Notebook, Power BI Service, Streamlit, Flask, APIs
-          , VS Code
+        <p class="text-gray-300 leading-relaxed  ">
+          Jupyter Notebook, Power BI Service, Streamlit, Flask, 
+          APIs, VS Code.
         </p>
       </div>
     </section>
