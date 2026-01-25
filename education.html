@@ -24,6 +24,13 @@
         animation: fadeUp 0.8s ease-out forwards;
         opacity: 0;
       }
+       .scrollbar-hide {
+      -ms-overflow-style: none;  
+      scrollbar-width: none;    
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;          
+    }
     </style>
   </head>
 
@@ -32,10 +39,20 @@
   >
     
    <nav
-      class="w-full max-w-6xl mx-auto px-8 py-5 flex justify-between items-center"
+      class="w-full px-6 py-4 flex justify-center"
     >
 
-      <ul class="flex space-x-10 text-lg font-semibold text-gray-200">
+<ul class="flex flex-nowrap
+              overflow-x-auto
+              md:overflow-x-visible
+              whitespace-nowrap
+              md:whitespace-normal
+              gap-6
+              justify-start md:justify-center
+              text-sm sm:text-base md:text-lg
+              font-semibold text-gray-300
+              scrollbar-hide
+              ">
         <li>
           <a
             href="index.html"

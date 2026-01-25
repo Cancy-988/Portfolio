@@ -20,8 +20,15 @@
     }
 
     .animate-fade-up {
-        animation: fadeUp 0.8s ease-out forwards;
-        opacity: 0;
+            animation: fadeUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+    .scrollbar-hide {
+      -ms-overflow-style: none;  
+      scrollbar-width: none;    
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;          
     }
 </style>
 
@@ -32,10 +39,21 @@
   >
    
     <nav
-      class="w-full max-w-6xl mx-auto px-8 py-5 flex justify-between items-center"
+      class="w-full px-6 py-4 flex justify-center"
     >
 
-      <ul class="flex space-x-10 text-lg font-semibold text-gray-200">
+   <ul class="flex flex-nowrap
+              overflow-x-auto
+              md:overflow-x-visible
+              whitespace-nowrap
+              md:whitespace-normal
+              gap-6
+              justify-start md:justify-center
+              text-sm sm:text-base md:text-lg
+              font-semibold text-gray-300
+              scrollbar-hide
+              ">
+
         <li>
           <a
             href="index.html"
@@ -94,50 +112,71 @@
 
   
     <section
-      class="max-w-6xl mx-auto px-8 pb-20 grid grid-cols-1 md:grid-cols-2 gap-8"
-    >
+       class="max-w-6xl mx-auto px-4 sm:px-8 pb-20 
+         grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
+>
 
-        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+        <div class="bg-[#1c1c2e] 
+            p-5 sm:p-8 
+            rounded-xl 
+            transition transform 
+            hover:-translate-y-2 hover:shadow-xl"
          style="animation-delay: 0.2s">
-        <h3 class="text-xl font-semibold mb-4 text-purple-400">
+       <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
           Core Data Science & Analytics
         </h3>
-        <p class="text-gray-300 leading-relaxed">
+     <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+
           Python, Pandas, NumPy, Data Cleaning & EDA, Machine Learning,
           Power BI, Excel.
         </p>
       </div>
 
 
-        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+        <div class="bg-[#1c1c2e] 
+            p-5 sm:p-8 
+            rounded-xl 
+            transition transform 
+            hover:-translate-y-2 hover:shadow-xl"
         style="animation-delay: 0.35s">
-        <h3 class="text-xl font-semibold mb-4 text-purple-400">
+       <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
           Software Engineering Fundamentals
         </h3>
-        <p class="text-gray-300 leading-relaxed">
+       <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+
           Data Structures, Problem Solving, File Handling, Modular Code
           Writing, Git & GitHub.
         </p>
       </div>
 
       
-        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+        <div class="bg-[#1c1c2e] 
+            p-5 sm:p-8 
+            rounded-xl 
+            transition transform 
+            hover:-translate-y-2 hover:shadow-xl"
         style="animation-delay: 0.5s">
-        <h3 class="text-xl font-semibold mb-4 text-purple-400">
+      <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
           Frontend, UI/UX & Presentation
         </h3>
-        <p class="text-gray-300 leading-relaxed">
+      <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+
           HTML (Semantic Structure), CSS (Basics), Tailwind CSS, Responsive
           Design (Basic), UI/UX Principles for clean layouts.
         </p>
       </div>
 
-        <div class="bg-[#1c1c2e] p-8 rounded-xl animate-fade-up transform transition-all duration-300 ease-out hover:-translate-y-3 hover:scale-[1.03] hover:shadow-2xl hover:bg-[#23233a]"
+        <div class="bg-[#1c1c2e] 
+            p-5 sm:p-8 
+            rounded-xl 
+            transition transform 
+            hover:-translate-y-2 hover:shadow-xl"
         style="animation-delay: 0.65s">
-        <h3 class="text-xl font-semibold mb-4 text-purple-400">
+    <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
           Platforms, Tools & Ecosystem
         </h3>
-        <p class="text-gray-300 leading-relaxed  ">
+       <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+
           Jupyter Notebook, Power BI Service, Streamlit, Flask, 
           APIs, VS Code.
         </p>
