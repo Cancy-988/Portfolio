@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cancy | Certificates</title>
+
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+
+   
+    <style>
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-up {
+        animation: fadeUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+       .scrollbar-hide {
+      -ms-overflow-style: none;  
+      scrollbar-width: none;    
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;          
+    }
+
+    .scroll-orbit-wrap {
+      height: 180vh;
+      position: relative;
+    }
+
+    .carousel-stage {
+      --card-w: 300px;
+      --card-h: 210px;
+      --radius: 320px;
+      --progress: 0;
+      min-height: 78vh;
+      display: grid;
+      place-items: center;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+      position: sticky;
+      top: 10vh;
+    }
+
+    .carousel3d {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .carousel-item {
+      --angle: 0deg;
+      --stack-shift: calc((var(--i) - 2.5) * 12px);
+      --stack-tilt: calc((var(--i) - 2.5) * 4deg);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform:
+        translate(-50%, -50%)
+        translateX(calc(var(--stack-shift) * (1 - var(--progress))))
+        rotate(calc(var(--stack-tilt) * (1 - var(--progress))))
+        rotate(calc(var(--angle) * var(--progress)))
+        translateX(calc(var(--radius) * var(--progress)))
+        rotate(calc(var(--angle) * -1 * var(--progress)));
+      transition: filter 0.35s ease, opacity 0.35s ease;
+      opacity: calc(0.78 + (0.22 * var(--progress)));
+      filter: brightness(calc(0.86 + (0.14 * var(--progress))));
+      will-change: transform;
+    }
+
+    .certificate-card {
+      width: var(--card-w);
+      height: var(--card-h);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(6px);
+      transition: box-shadow 0.35s ease, transform 0.35s ease;
+    }
+
+    .carousel-item:hover {
+      z-index: 4;
+    }
+
+    .carousel-item:hover .certificate-card {
+      transform: scale(1.05);
+      box-shadow: 0 0 22px rgba(167, 139, 250, 0.45);
+    }
+
+    .certificate-media {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #ffffff;
+      display: block;
+    }
+
+    .certificate-link {
+      display: block;
+      width: var(--card-w);
+      height: var(--card-h);
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .certificate-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(2, 6, 23, 0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .certificate-modal.active {
+      display: flex;
+    }
+
+    .certificate-modal-content {
+      width: min(1100px, 96vw);
+      height: min(84vh, 860px);
+      background: rgba(15, 23, 42, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .certificate-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    .certificate-modal-close {
+      border: 0;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .certificate-modal-view {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .certificate-modal-view img,
+    .certificate-modal-view iframe {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border: 0;
+      background: #ffffff;
+    }
+
+    @media (max-width: 1024px) {
+      .carousel-stage {
+        --card-w: 270px;
+        --card-h: 190px;
+        --radius: 250px;
+        min-height: 74vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .scroll-orbit-wrap {
+        height: 150vh;
+      }
+      .carousel-stage {
+        --card-w: 230px;
+        --card-h: 165px;
+        --radius: 180px;
+        min-height: 72vh;
+        top: 8vh;
+      }
+    }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen bg-gradient-to-br from-[#0f0f14] via-[#141422] to-[#1b1b2f] text-white"
+  >
+    
+   <nav
+      class="w-full px-6 py-4 flex justify-center"
+    >
+
+<ul class="flex flex-nowrap
+              overflow-x-auto
+              md:overflow-x-visible
+              whitespace-nowrap
+              md:whitespace-normal
+              gap-6
+              justify-start md:justify-center
+              text-sm sm:text-base md:text-lg
+              font-semibold text-gray-300
+              scrollbar-hide
+              ">
+        <li>
+          <a
+            href="index.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a
+            href="skills.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Skills</a
+            >
+          </li>
+          <li>
+            <a
+            href="progress.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Progress</a
+            >
+          </li>
+          <li>
+            <a
+            href="education.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Education</a
+          >
+        </li>
+        <li>
+          <a
+            href="project.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Projects</a
+          >
+        </li>
+        <li>
+          <a
+            href="certificates.html"
+            class="px-5 py-3 rounded-lg bg-white/10 text-purple-400"
+            >Certificates</a
+          >
+        </li>
+        <li>
+          <a
+            href="resume.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Resume</a
+          >
+        </li>
+        <li>
+          <a
+            href="contact.html"
+            class="px-5 py-3 rounded-lg hover:text-purple-400 hover:bg-white/10 transition"
+            >Contact</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+
+ 
+    <section class="max-w-6xl mx-auto px-8 pt-16 pb-12">
+      <h1 class="text-4xl font-bold mb-4 animate-fade-up">
+        Certifications &amp; <span class="text-purple-400">Achievements</span>
+      </h1>
+      <p
+        class="text-gray-400 max-w-2xl leading-relaxed animate-fade-up"
+        style="animation-delay: 0.2s"
+      >
+        Professional certifications and credentials earned through various courses and training programs.
+      </p>
+    </section>
+
+    
+    <section class="max-w-6xl mx-auto px-4 sm:px-8 pb-20 animate-fade-up" style="animation-delay: 0.3s">
+      <div id="scrollOrbit" class="scroll-orbit-wrap">
+      <div id="carouselStage" class="carousel-stage">
+        <div id="carousel3d" class="carousel3d" aria-label="Scroll spread certificates carousel">
+          <div class="carousel-item" style="--i: 0; --angle: 0deg">
+            <button type="button" class="certificate-link" data-src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013555.png?updatedAt=1774123605558" data-type="image" data-title="NPTEL Certificate" aria-label="Open NPTEL Certificate">
+              <div class="certificate-card">
+                <img src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013555.png?updatedAt=1774123605558" alt="NPTEL Certificate" class="certificate-media" />
+              </div>
+            </button>
+          </div>
+
+          <div class="carousel-item" style="--i: 1; --angle: 60deg">
+            <button type="button" class="certificate-link" data-src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013441.png?updatedAt=1774123501977" data-type="image" data-title="Prompt Engineering Certificate" aria-label="Open Prompt Engineering Certificate">
+              <div class="certificate-card">
+                <img src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013441.png?updatedAt=1774123501977" alt="Prompt Engineering Certificate" class="certificate-media" />
+              </div>
+            </button>
+          </div>
+
+          <div class="carousel-item" style="--i: 2; --angle: 120deg">
+            <button type="button" class="certificate-link" data-src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013332.png?updatedAt=1774123461841" data-type="image" data-title="Hackathon Certificate" aria-label="Open Hackathon Certificate">
+              <div class="certificate-card">
+                <img src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013332.png?updatedAt=1774123461841" alt="Hackathon Certificate" class="certificate-media" />
+              </div>
+            </button>
+          </div>
+
+          <div class="carousel-item" style="--i: 3; --angle: 180deg">
+            <button type="button" class="certificate-link" data-src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013320.png?updatedAt=1774123443522" data-type="image" data-title="Gen AI Certificate" aria-label="Open Gen AI Certificate">
+              <div class="certificate-card">
+                <img src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013320.png?updatedAt=1774123443522" alt="Gen AI Certificate" class="certificate-media" />
+              </div>
+            </button>
+          </div>
+
+          <div class="carousel-item" style="--i: 4; --angle: 240deg">
+            <button type="button" class="certificate-link" data-src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013209.png?updatedAt=1774123348135" data-type="image" data-title="Java Certificate" aria-label="Open Java Certificate">
+              <div class="certificate-card">
+                <img src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013209.png?updatedAt=1774123348135" alt="Java Certificate" class="certificate-media" />
+              </div>
+            </button>
+          </div>
+
+          <div class="carousel-item" style="--i: 5; --angle: 300deg">
+            <button type="button" class="certificate-link" data-src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013104.png?updatedAt=1774123303227" data-type="image" data-title="Java Bootcamp Training Certificate" aria-label="Open Java Bootcamp Training Certificate">
+              <div class="certificate-card">
+                <img src="https://ik.imagekit.io/vcbr94zna/Screenshot%202026-03-22%20013104.png?updatedAt=1774123303227" alt="Java Bootcamp Training Certificate" class="certificate-media" />
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <div id="certificateModal" class="certificate-modal" aria-hidden="true">
+      <div class="certificate-modal-content">
+        <div class="certificate-modal-header">
+          <div id="certificateModalTitle">Certificate</div>
+          <button id="certificateModalClose" class="certificate-modal-close" type="button">Close</button>
+        </div>
+        <div class="certificate-modal-view" id="certificateModalView"></div>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById("certificateModal");
+      const modalTitle = document.getElementById("certificateModalTitle");
+      const modalView = document.getElementById("certificateModalView");
+      const modalClose = document.getElementById("certificateModalClose");
+
+      function closeCertificateModal() {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+        modalView.innerHTML = "";
+        document.body.style.overflow = "";
+      }
+
+      document.querySelectorAll(".certificate-link").forEach((item) => {
+        item.addEventListener("click", () => {
+          const src = item.getAttribute("data-src");
+          const type = item.getAttribute("data-type");
+          const title = item.getAttribute("data-title") || "Certificate";
+
+          modalTitle.textContent = title;
+          modalView.innerHTML = "";
+
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = title;
+          modalView.appendChild(image);
+
+          modal.classList.add("active");
+          modal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      modalClose.addEventListener("click", closeCertificateModal);
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeCertificateModal();
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeCertificateModal();
+        }
+      });
+
+      const scrollOrbit = document.getElementById("scrollOrbit");
+      const carousel3d = document.getElementById("carousel3d");
+
+      function updateOrbitProgress() {
+        const rect = scrollOrbit.getBoundingClientRect();
+        const viewport = window.innerHeight;
+        const scrollRange = Math.max(scrollOrbit.offsetHeight - viewport, 1);
+        const passed = Math.min(Math.max(-rect.top, 0), scrollRange);
+        const progress = passed / scrollRange;
+        carousel3d.style.setProperty("--progress", progress.toFixed(3));
+      }
+
+      window.addEventListener("scroll", updateOrbitProgress, { passive: true });
+      window.addEventListener("resize", updateOrbitProgress);
+      updateOrbitProgress();
+    </script>
+
+  </body>
+</html>
