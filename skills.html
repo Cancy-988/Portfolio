@@ -30,6 +30,161 @@
     .scrollbar-hide::-webkit-scrollbar {
       display: none;          
     }
+
+    .skills-book-section {
+      position: relative;
+    }
+
+    .book-stage {
+      position: sticky;
+      top: clamp(14px, 8vh, 70px);
+      height: min(78vh, 740px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .book-shell {
+      position: relative;
+      width: min(100%, 920px);
+      height: min(66vh, 560px);
+      perspective: 2200px;
+      transform-style: preserve-3d;
+      border-radius: 1rem;
+    }
+
+    .book-spine {
+      position: absolute;
+      left: calc(50% - 8px);
+      top: 4%;
+      bottom: 4%;
+      width: 16px;
+      border-radius: 999px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.35), rgba(255, 255, 255, 0.08));
+      z-index: 70;
+      pointer-events: none;
+    }
+
+    .book-left,
+    .book-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+    }
+
+    .book-left {
+      left: 0;
+      z-index: 20;
+      border-top-left-radius: 0.85rem;
+      border-bottom-left-radius: 0.85rem;
+      box-shadow: inset -16px 0 20px rgba(0, 0, 0, 0.2), 0 16px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .book-right {
+      right: 0;
+      z-index: 35;
+      transform-style: preserve-3d;
+      perspective: 1800px;
+    }
+
+    .book-right-page {
+      position: absolute;
+      inset: 0;
+      border-radius: 0.85rem;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      will-change: transform, opacity;
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+    }
+
+    .book-right-page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0) 34%);
+      opacity: 0.7;
+    }
+
+    .book-page-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .book-side-label {
+      letter-spacing: 0.08em;
+    }
+
+    .book-point-list {
+      list-style: disc;
+      padding-left: 1.1rem;
+    }
+
+    .book-page-indicator {
+      width: fit-content;
+      border-radius: 9999px;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.78rem;
+      color: rgb(209 213 219);
+      margin-bottom: 0.9rem;
+    }
+
+    .book-right-page.is-turned {
+      pointer-events: none;
+    }
+
+    @media (min-width: 640px) {
+      .book-page-content {
+        padding: 2.25rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .book-stage {
+        position: static;
+        height: auto;
+      }
+
+      .book-shell {
+        height: auto;
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .book-spine {
+        display: none;
+      }
+
+      .book-right-page {
+        position: relative;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+
+      .book-left,
+      .book-right {
+        width: 100%;
+        position: relative;
+      }
+
+      .book-right-page {
+        position: relative;
+        margin-top: 0.75rem;
+      }
+
+      .book-right-page::after {
+        display: none;
+      }
+    }
 </style>
 
   </head>
@@ -125,76 +280,267 @@
     </section>
 
   
-    <section
-       class="max-w-6xl mx-auto px-4 sm:px-8 pb-20 
-         grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
->
+    <section class="max-w-6xl mx-auto px-4 sm:px-8 pb-20 skills-book-section" data-book-section>
+      <div class="book-stage" data-book-stage>
+        <div class="book-shell" data-book-shell>
+          <div class="book-spine"></div>
 
-        <div class="bg-[#1c1c2e] 
-            p-5 sm:p-8 
-            rounded-xl 
-            transition transform 
-            hover:-translate-y-2 hover:shadow-xl"
-         style="animation-delay: 0.2s">
-       <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
-          Core Data Science & Analytics
-        </h3>
-     <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+          <aside class="book-left bg-[#1c1c2e]">
+            <div class="book-page-content">
+              <p class="book-page-indicator" data-page-indicator>1/4</p>
+              <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-purple-400">
+                Skills Book
+              </h3>
+              <p class="text-xs uppercase book-side-label text-gray-400 mb-2">
+                Current Skill
+              </p>
+              <h4 class="text-lg sm:text-xl font-semibold text-gray-100 mb-3" data-current-title>
+                Core Data Science & Analytics
+              </h4>
+              <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                Turn pages with scroll to see each skill one by one.
+              </p>
+              <p class="text-sm sm:text-base text-gray-400 leading-relaxed mt-3" data-current-desc>
+                Python, Pandas, NumPy, Data Cleaning and EDA, Machine Learning, Power BI, and Excel.
+              </p>
+            </div>
+          </aside>
 
-          Python, Pandas, NumPy, Data Cleaning & EDA, Machine Learning,
-          Power BI, Excel.
-        </p>
-      </div>
+          <div class="book-right" data-book-right>
+            <article class="book-right-page bg-[#1c1c2e]" data-book-page>
+              <div class="book-page-content md:grid md:grid-cols-2 md:gap-6 md:items-start">
+                <div class="mb-4 md:mb-0">
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">Skill Area</p>
+                  <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-purple-400" data-skill-title>
+                    Core Data Science & Analytics
+                  </h3>
+                  <p class="text-sm text-gray-400">Building data-driven solutions from exploration to insights.</p>
+                </div>
+                <div>
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">What I Use</p>
+                  <p class="text-sm sm:text-base text-gray-300 leading-relaxed" data-skill-desc>
+                    Python, Pandas, NumPy, Data Cleaning and EDA, Machine Learning,
+                    Power BI, and Excel for practical analytics.
+                  </p>
+                  <ul class="book-point-list mt-3 text-sm text-gray-400 space-y-1">
+                    <li>Data preprocessing and feature understanding</li>
+                    <li>Insight-focused dashboards and reports</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
 
+            <article class="book-right-page bg-[#1c1c2e]" data-book-page>
+              <div class="book-page-content md:grid md:grid-cols-2 md:gap-6 md:items-start">
+                <div class="mb-4 md:mb-0">
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">Skill Area</p>
+                  <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-purple-400" data-skill-title>
+                    Software Engineering Fundamentals
+                  </h3>
+                  <p class="text-sm text-gray-400">Writing organized and maintainable solutions.</p>
+                </div>
+                <div>
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">What I Use</p>
+                  <p class="text-sm sm:text-base text-gray-300 leading-relaxed" data-skill-desc>
+                    Data Structures, Problem Solving, File Handling, Modular Code Writing,
+                    Git, and GitHub workflow basics.
+                  </p>
+                  <ul class="book-point-list mt-3 text-sm text-gray-400 space-y-1">
+                    <li>Version-controlled project workflow</li>
+                    <li>Readable and reusable code patterns</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
 
-        <div class="bg-[#1c1c2e] 
-            p-5 sm:p-8 
-            rounded-xl 
-            transition transform 
-            hover:-translate-y-2 hover:shadow-xl"
-        style="animation-delay: 0.35s">
-       <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
-          Software Engineering Fundamentals
-        </h3>
-       <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+            <article class="book-right-page bg-[#1c1c2e]" data-book-page>
+              <div class="book-page-content md:grid md:grid-cols-2 md:gap-6 md:items-start">
+                <div class="mb-4 md:mb-0">
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">Skill Area</p>
+                  <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-purple-400" data-skill-title>
+                    Frontend, UI/UX and Presentation
+                  </h3>
+                  <p class="text-sm text-gray-400">Presenting ideas through clean and responsive interfaces.</p>
+                </div>
+                <div>
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">What I Use</p>
+                  <p class="text-sm sm:text-base text-gray-300 leading-relaxed" data-skill-desc>
+                    HTML semantic structure, CSS basics, Tailwind CSS, responsive design,
+                    and clean layout principles.
+                  </p>
+                  <ul class="book-point-list mt-3 text-sm text-gray-400 space-y-1">
+                    <li>Mobile-friendly component layouts</li>
+                    <li>Readable typography and spacing hierarchy</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
 
-          Data Structures, Problem Solving, File Handling, Modular Code
-          Writing, Git & GitHub.
-        </p>
-      </div>
-
-      
-        <div class="bg-[#1c1c2e] 
-            p-5 sm:p-8 
-            rounded-xl 
-            transition transform 
-            hover:-translate-y-2 hover:shadow-xl"
-        style="animation-delay: 0.5s">
-      <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
-          Frontend, UI/UX & Presentation
-        </h3>
-      <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
-
-          HTML (Semantic Structure), CSS (Basics), Tailwind CSS, Responsive
-          Design (Basic), UI/UX Principles for clean layouts.
-        </p>
-      </div>
-
-        <div class="bg-[#1c1c2e] 
-            p-5 sm:p-8 
-            rounded-xl 
-            transition transform 
-            hover:-translate-y-2 hover:shadow-xl"
-        style="animation-delay: 0.65s">
-    <h3 class="text-lg sm:text-xl font-semibold mb-3 text-purple-400">
-          Platforms, Tools & Ecosystem
-        </h3>
-       <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
-
-          Jupyter Notebook, Power BI Service, Streamlit, Flask, 
-          APIs, VS Code.
-        </p>
+            <article class="book-right-page bg-[#1c1c2e]" data-book-page>
+              <div class="book-page-content md:grid md:grid-cols-2 md:gap-6 md:items-start">
+                <div class="mb-4 md:mb-0">
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">Skill Area</p>
+                  <h3 class="text-xl sm:text-2xl font-semibold mb-3 text-purple-400" data-skill-title>
+                    Platforms, Tools and Ecosystem
+                  </h3>
+                  <p class="text-sm text-gray-400">Using practical tooling to build and deploy faster.</p>
+                </div>
+                <div>
+                  <p class="text-xs uppercase book-side-label text-gray-400 mb-2">What I Use</p>
+                  <p class="text-sm sm:text-base text-gray-300 leading-relaxed" data-skill-desc>
+                    Jupyter Notebook, Power BI Service, Streamlit, Flask, APIs,
+                    and VS Code development environment.
+                  </p>
+                  <ul class="book-point-list mt-3 text-sm text-gray-400 space-y-1">
+                    <li>Notebook-based experimentation workflow</li>
+                    <li>App prototyping with Python frameworks</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
+
+    <script>
+      (function () {
+        const section = document.querySelector('[data-book-section]');
+        const shell = document.querySelector('[data-book-shell]');
+        const pages = Array.from(document.querySelectorAll('[data-book-page]'));
+        const pageIndicator = document.querySelector('[data-page-indicator]');
+        const currentTitle = document.querySelector('[data-current-title]');
+        const currentDesc = document.querySelector('[data-current-desc]');
+        if (!section || !shell || pages.length === 0) return;
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reducedMotion) return;
+
+        const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+        const easeInOut = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        const lerp = (start, end, alpha) => start + (end - start) * alpha;
+
+        let target = 0;
+        let current = 0;
+        let ticking = false;
+        let inView = false;
+
+        const skillMeta = pages.map((page) => {
+          const title = page.querySelector('[data-skill-title]');
+          const desc = page.querySelector('[data-skill-desc]');
+          return {
+            title: title ? title.textContent.trim() : '',
+            desc: desc ? desc.textContent.trim() : ''
+          };
+        });
+
+        const setHeight = () => {
+          const vh = window.innerHeight;
+          section.style.minHeight = Math.round(vh * 1.1 + vh * 1.25 * pages.length) + 'px';
+        };
+
+        const calculate = () => {
+          const rect = section.getBoundingClientRect();
+          const vh = window.innerHeight;
+          const start = vh * 0.12;
+          const total = Math.max(section.offsetHeight - vh * 0.88, 1);
+          const traveled = clamp(-rect.top + start, 0, total);
+          target = traveled / total;
+        };
+
+        const paint = (progress) => {
+          const phase = progress * pages.length;
+          const activeIndex = clamp(Math.floor(phase), 0, pages.length - 1);
+
+          pages.forEach((page, index) => {
+            const local = clamp(phase - index, 0, 1);
+            const eased = easeInOut(local);
+            const rotateY = -175 * eased;
+            const translateX = -26 * eased;
+            const translateY = -5 * eased + (pages.length - 1 - index) * 2;
+            const scale = 1 - 0.012 * eased;
+            const opacity = 1 - 0.1 * eased;
+
+            page.classList.toggle('is-turned', local >= 0.995);
+            page.style.zIndex = String(90 - index);
+            page.style.transform =
+              'translate3d(' + Math.round(translateX) + 'px,' + Math.round(translateY) + 'px,0) rotateY(' + rotateY.toFixed(2) + 'deg) scale(' + scale.toFixed(3) + ')';
+            page.style.opacity = opacity.toFixed(3);
+          });
+
+          if (pageIndicator) {
+            pageIndicator.textContent = (activeIndex + 1) + '/' + pages.length;
+          }
+
+          if (currentTitle) {
+            currentTitle.textContent = skillMeta[activeIndex].title;
+          }
+
+          if (currentDesc) {
+            currentDesc.textContent = skillMeta[activeIndex].desc;
+          }
+        };
+
+        const render = () => {
+          ticking = false;
+          current = lerp(current, target, 0.07);
+
+          if (Math.abs(target - current) < 0.001) {
+            current = target;
+          }
+
+          paint(current);
+
+          if (inView && Math.abs(target - current) >= 0.001) {
+            ticking = true;
+            requestAnimationFrame(render);
+          }
+        };
+
+        const requestPaint = () => {
+          calculate();
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(render);
+          }
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.target !== section) return;
+              inView = entry.isIntersecting;
+              if (inView) requestPaint();
+            });
+          },
+          {
+            threshold: [0, 0.08, 0.2]
+          }
+        );
+
+        observer.observe(section);
+
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (!inView) return;
+            requestPaint();
+          },
+          { passive: true }
+        );
+
+        window.addEventListener(
+          'resize',
+          () => {
+            setHeight();
+            requestPaint();
+          },
+          { passive: true }
+        );
+
+        setHeight();
+        requestPaint();
+      })();
+    </script>
   </body>
 </html>
